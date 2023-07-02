@@ -1,0 +1,10 @@
+version: '3'
+services:
+  qmk-docker:
+    build: .
+    volumes:
+      - ./app:/app
+    environment:
+      - PATH=$HOME/.local/bin:$PATH
+    command: bash
+    network_mode: bridge
