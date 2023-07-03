@@ -1,8 +1,8 @@
 build:
-	docker build -t qmk-docker .
+	docker-compose up --build
 
 build-nc:
-	docker build --no-cache -t qmk-docker .
+	docker-compose build --no-cache
 
 run:
 	docker-compose run qmk-docker

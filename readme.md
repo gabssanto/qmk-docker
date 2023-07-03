@@ -1,44 +1,61 @@
-# QMK Docker
+# QMK Docker for Apple Silicon
 
-Created this in order to use QMK on Apple Silicon.
+This repository provides the necessary configuration to use QMK with Docker on Apple Silicon devices.
 
-## SETUP
+## Getting Started
 
-### Build Docker Image
+These instructions guide you on how to build and run the Docker image for QMK.
 
-```
+### Building the Docker Image
+
+To build the Docker image, execute the following command:
+
+```bash
 make build
 ```
 
-### Run Docker Image
+This command downloads the necessary Docker files and constructs the image on your local machine.
 
-```
+### Running the Docker Image
+
+Run the Docker image using the following command:
+
+```bash
 make run
 ```
 
-### QMK
+This command starts the Docker container, which is now ready to compile QMK keyboard layouts.
 
-```
-qmk setup
-```
+## QMK Compilation
 
-### QMK Compile
+To compile your keyboard layout with QMK, use the following command:
 
-```
+```bash
 qmk compile -kb lily58 -km default
 ```
 
-#### Pro Micro
+### Compiling for Pro Micro
 
-```
+To compile a keyboard layout specifically for Pro Micro, use the following command:
+
+```bash
 qmk compile -kb lily58 -km default -e CONVERT_TO=promicro_rp2040
 ```
 
-Output goes to `~/qmk_firmware/`
+## Managing Output
 
-```
-mv /root/qmk_firmware/lily58_rev1_default.
-hex /app/
+The output of the QMK compilation is directed to the `~/qmk_firmware/` directory within the Docker container.
+
+To move the compiled `.hex` file to the application directory, execute the following command:
+
+```bash
+mv /root/qmk_firmware/lily58_rev1_default.hex /app/
 ```
 
-`mv /root/qmk_firmware/*.hex /app/`
+To move all compiled `.hex` files to the application directory, use the wildcard approach:
+
+```bash
+mv /root/qmk_firmware/*.hex /app/
+```
+
+With these instructions, you should be ready to run QMK on Apple Silicon using Docker.

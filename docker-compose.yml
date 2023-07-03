@@ -1,8 +1,11 @@
 version: '3'
 services:
   qmk-docker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./app:/app
-    command: bash -c "apt install sudo && pip install qmk && source /root/.bashrc && bash"
     network_mode: bridge
+    ports:
+      - 80:80
