@@ -14,14 +14,13 @@ RUN apt-get update \
   ca-certificates \
   g++ \
   gcc \
-  && apt-get install -y --no-install-recommends --allow-downgrades \
-  libc6=2.28-10+deb10u1 \
-  libc-dev-bin=2.28-10+deb10u1 \
   && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.local/bin:${PATH}"
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends make
 
 EXPOSE 80
 
-CMD ["python", "app.py"]
+CMD ["bash", "/app/start.sh"]

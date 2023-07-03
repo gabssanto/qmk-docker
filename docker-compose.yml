@@ -4,7 +4,5 @@ services:
     build: .
     volumes:
       - ./app:/app
-    environment:
-      - PATH=$HOME/.local/bin:$PATH
-    command: bash
+    command: bash -c "pip install qmk && source /root/.bashrc && bash"
     network_mode: bridge
