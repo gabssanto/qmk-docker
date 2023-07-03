@@ -25,6 +25,12 @@ qmk setup
 ### QMK Compile
 
 ```
+qmk compile -kb lily58 -km default
+```
+
+#### Pro Micro
+
+```
 qmk compile -kb lily58 -km default -e CONVERT_TO=promicro_rp2040
 ```
 
