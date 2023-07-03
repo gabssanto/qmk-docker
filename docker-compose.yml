@@ -4,5 +4,5 @@ services:
     build: .
     volumes:
       - ./app:/app
-    command: bash -c "pip install qmk && source /root/.bashrc && bash"
+    command: bash -c "apt install sudo && pip install qmk && source /root/.bashrc && bash"
     network_mode: bridge
