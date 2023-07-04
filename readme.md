@@ -26,6 +26,17 @@ make run
 
 This command starts the Docker container, which is now ready to compile QMK keyboard layouts.
 
+## Adjustments for Split Keyboards
+
+Not sure if all split keyboards require this, but the Lily58 requires the following adjustments to compile properly.
+
+```c
+#define SPLIT_USB_DETECT
+
+```
+
+Had a lot of issues while trying to make the right side work properly, but this finally finished this issue.
+
 ## QMK Compilation
 
 To compile your keyboard layout with QMK, use the following command:
