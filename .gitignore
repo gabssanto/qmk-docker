@@ -1,3 +1,2 @@
-# Ignore qmk_output folder
-qmk_output/
-app/
+# Ignore qmk_firmware folder
+qmk_firmware/

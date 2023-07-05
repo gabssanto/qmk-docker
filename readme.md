@@ -18,55 +18,53 @@ This command downloads the necessary Docker files and constructs the image on yo
 
 ### Running the Docker Image
 
-Run the Docker image using the following command:
+To run the Docker image, execute the following commands:
 
 ```bash
 make run
+make setup
 ```
 
-This command starts the Docker container, which is now ready to compile QMK keyboard layouts.
+These commands start the Docker container and prepare it for compiling your keyboard layout.
 
-## Adjustments for Split Keyboards
-
-Not sure if all split keyboards require this, but the Lily58 requires the following adjustments to compile properly.
-
-```c
-#define SPLIT_USB_DETECT
-
-```
-
-Had a lot of issues while trying to make the right side work properly, but this finally finished this issue.
+> **Note**: The initial build process may take some time.
 
 ## QMK Compilation
 
-To compile your keyboard layout with QMK, use the following command:
+To access the bash shell of the Docker container, run the following command:
+
+```bash
+make bash
+```
+
+### Compiling for Lily58
+
+To compile your keyboard layout with QMK for the Lily58 keyboard, use the following command:
 
 ```bash
 qmk compile -kb lily58 -km default
 ```
 
-### Compiling for Pro Micro
+This command compiles the QMK keyboard layout using the default keymap for the Lily58 keyboard.
 
-To compile a keyboard layout specifically for Pro Micro, use the following command:
+#### Compiling for Raspberry Pi (Optional)
+
+If you are compiling a keyboard layout specifically for the Raspberry Pi controller, you can use the following command:
 
 ```bash
 qmk compile -kb lily58 -km default -e CONVERT_TO=promicro_rp2040
 ```
 
-## Managing Output
+This command compiles the QMK keyboard layout using the default keymap for the Lily58 keyboard, targeting the Raspberry Pi controller and utilizing the RP2040 bootloader.
 
-The output of the QMK compilation is directed to the `~/qmk_firmware/` directory within the Docker container.
+### Adjustments for Split Keyboards (Optional)
 
-To move the compiled `.hex` file to the application directory, execute the following command:
+Some split keyboards, such as Lily58, may require additional adjustments to compile properly. To enable split keyboard support, include the following code snippet in your keyboard layout's configuration file `config.h`:
 
-```bash
-mv /root/qmk_firmware/lily58_rev1_default.hex /app/
+```c
+#define SPLIT_USB_DETECT
 ```
 
-To move all compiled `.hex` files to the application directory, use the wildcard approach:
+This adjustment is specific to Lily58, and other split keyboards may have different requirements.
 
-```bash
-mv /root/qmk_firmware/*.hex /app/
-```
-
-With these instructions, you should be ready to run QMK on Apple Silicon using Docker.
+With these instructions, you should be able to build and compile your QMK keyboard layout on Apple Silicon using Docker.

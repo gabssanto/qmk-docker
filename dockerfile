@@ -1,6 +1,6 @@
 FROM amd64/python:3.8-slim-buster
 
-WORKDIR /app
+WORKDIR /
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -23,7 +23,7 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends make
 
 # Ensure you have the necessary files in your host's current directory
-COPY . /app
+COPY . /
 
 EXPOSE 80
 
