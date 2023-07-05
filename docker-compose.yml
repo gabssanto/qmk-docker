@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./app:/app
+      - ./app/qmk_firmware:/root/qmk_firmware
     network_mode: bridge
     ports:
       - 80:80

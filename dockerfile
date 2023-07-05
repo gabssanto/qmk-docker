@@ -1,6 +1,6 @@
 FROM amd64/python:3.8-slim-buster
 
-WORKDIR /
+WORKDIR /app
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -17,15 +17,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends sudo
 
 RUN pip install qmk
 
-RUN qmk setup -y
-
 ENV PATH="/root/.local/bin:${PATH}"
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends make
 
-COPY . /
+# Ensure you have the necessary files in your host's current directory
+COPY . /app
 
 EXPOSE 80
 
-CMD bash
+CMD ["tail", "-f", "/dev/null"]
+
